@@ -1,0 +1,605 @@
+/* ========================================
+   VARIABLER
+======================================== */
+
+html {
+  --color-page: #16101a;
+  --color-header: #4b3a57;
+  --color-surface: rgb(231, 218, 172);
+
+  --color-text: rgb(25, 17, 32);
+  --color-surface-text: rgb(231, 218, 172);
+  --color-muted: #b8ad9f;
+
+  --color-border: #e9c989;
+
+  --space-05: 0.5rem;
+  --space-1: 1rem;
+  --space-2: 2rem;
+  --space-3: 3rem;
+}
+
+/* ========================================
+   GLOBALT LAYOUT
+======================================== */
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: minmax(1rlh, 1fr) minmax(0, 75rem) minmax(1rlh, 1fr);
+
+  background-color: var(--color-page);
+  color: var(--color-surface-text);
+}
+
+main {
+  display: grid;
+  grid-template-columns: inherit;
+  grid-column: 1 / -1;
+  align-content: start;
+}
+
+main > * {
+  grid-column: 2;
+  padding-block: var(--space-3);
+}
+
+/* ========================================
+   HEADER & FOOTER
+======================================== */
+
+.site-header,
+.site-footer {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: inherit;
+  background-color: var(--color-header);
+  color: var(--color-surface-text);
+}
+
+.header-content {
+  grid-column: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0rem 1rem;
+}
+
+.site-logo {
+  height: 100px;
+  width: auto;
+  transform: scale(1.2);
+  transform-origin: left center;
+}
+
+.site-nav {
+  margin-left: auto;
+}
+
+.footer-content {
+  grid-column: 2;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  gap: var(--space-1);
+  padding-block: var(--space-1);
+}
+
+/* ========================================
+   NAVIGATION
+======================================== */
+
+.menu,
+.menu li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.menu a {
+  position: relative;
+  display: inline-block;
+
+  font-family: "Tinos", serif;
+  font-size: 1.2rem;
+  color: var(--color-surface-text);
+  text-decoration: none;
+  padding-bottom: 0.6rem;
+
+  transition: color 0.3s ease;
+}
+
+.menu a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+
+  width: 60%;
+  height: 2px;
+
+  background: radial-gradient(
+    circle,
+    var(--color-border) 0%,
+    rgba(233, 201, 137, 0) 80%
+  );
+
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+
+.menu a:hover,
+.menu a[aria-current="page"] {
+  color: var(--color-border);
+}
+
+.menu a:hover::after,
+.menu a[aria-current="page"]::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* ========================================
+   BURGER MENU
+======================================== */
+
+.burger {
+  display: none;
+}
+
+.burgerimg {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.burgerimg img {
+  width: 40px;
+  height: auto;
+}
+
+/* Luk-knap */
+
+.close-menu {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: var(--color-border);
+  font-size: 2.5rem;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 800px) {
+  .burger {
+    display: block;
+  }
+
+  .site-nav .menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+
+    width: 320px;
+    max-width: 85vw;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    padding-top: 5rem;
+    gap: 2rem;
+
+    background: rgba(52, 52, 52, 0.98);
+    backdrop-filter: blur(10px);
+
+    transition: right 0.4s ease;
+    z-index: 1000;
+  }
+
+  .menu.nav-active {
+    right: 0;
+  }
+
+  .menu a {
+    font-size: 1.6rem;
+  }
+}
+
+/* ========================================
+   DESKTOP
+======================================== */
+
+@media (min-width: 801px) {
+  .burger,
+  .close-menu {
+    display: none;
+  }
+}
+/* ========================================
+   INTRO / HERO
+======================================== */
+
+.intro {
+  display: grid;
+  gap: var(--space-2);
+  grid-template-columns: 1fr;
+}
+.intro div {
+  max-width: 60ch;
+}
+@media (min-width: 768px) {
+  .intro {
+    grid-template-columns: 1fr 1fr;
+  }
+  .form-page {
+    grid-template-columns: min(40%, 50ch) 1fr;
+  }
+}
+.intro img {
+  width: 100%;
+  max-width: 500px;
+  justify-self: center;
+  border-radius: 10px;
+}
+
+@media (min-width: 768px) {
+  .intro {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+
+  .intro img {
+    max-width: 100%;
+    justify-self: end;
+  }
+}
+
+.grid_hero1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 80px; /* mindre banner */
+  margin-top: 2rem;
+
+  background-color: #f4e2ab47;
+  overflow: visible;
+}
+
+.grid_hero1 img {
+  width: 180px; /* mindre logo */
+  height: auto;
+}
+
+@media (max-width: 767px) {
+  .grid_hero1 {
+    height: 70px;
+  }
+
+  .grid_hero1 img {
+    width: 160px;
+  }
+}
+/* ========================================
+   EVENTS
+======================================== */
+
+.flex {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+@media (min-width: 768px) {
+  .flex {
+    flex-direction: row;
+  }
+}
+.events {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+
+  background-color: var(--color-surface);
+  color: var(--color-text);
+
+  padding: var(--space-1);
+  border-radius: 5%;
+}
+
+.events img {
+  height: 40vh;
+  object-fit: cover;
+  border-radius: 5%;
+}
+
+.events h2,
+.events p {
+  color: var(--color-text);
+}
+
+.events button {
+  margin-top: auto;
+  border-radius: var(--space-05);
+}
+
+/* ========================================
+   KNAPPER
+======================================== */
+
+.button {
+  display: inline-block;
+  justify-self: start;
+
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--color-border);
+
+  background: var(--color-border);
+  color: var(--color-text);
+
+  text-decoration: none;
+}
+
+/* ========================================
+   INDHOLDSSEKTIONER
+======================================== */
+
+.svg-page,
+.form-page,
+.opsamling-page {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.svg-intro,
+.form-intro,
+.opsamling-intro,
+.error-page {
+  display: grid;
+  gap: var(--space-1);
+  max-width: 60ch;
+}
+
+.form-intro {
+  align-content: start;
+}
+
+.svg-intro p,
+.form-intro p,
+.opsamling-intro p,
+.error-page p {
+  color: var(--color-muted);
+}
+
+/* ========================================
+   SVG SIDE
+======================================== */
+
+.svg-layout {
+  display: grid;
+  gap: var(--space-2);
+  align-items: start;
+}
+
+@media (min-width: 800px) {
+  .svg-layout {
+    grid-template-columns: 1.4fr 1fr;
+  }
+}
+
+.svg-container {
+  width: 100%;
+  transition: filter 0.5s ease;
+}
+
+.svg-container object {
+  width: 100%;
+  display: block;
+}
+
+/* ========================================
+   KRYSTALKUGLE & LYS
+======================================== */
+
+@keyframes crystalGlow {
+  0% {
+    filter: drop-shadow(0 0 12px #c8f4ff) drop-shadow(0 0 25px #8be8ff);
+  }
+
+  50% {
+    filter: drop-shadow(0 0 25px #c8f4ff) drop-shadow(0 0 50px #8be8ff)
+      drop-shadow(0 0 80px #67dfff);
+  }
+
+  100% {
+    filter: drop-shadow(0 0 12px #c8f4ff) drop-shadow(0 0 25px #8be8ff);
+  }
+}
+
+/* ========================================
+   SKRIFTRULLE
+======================================== */
+
+.scroll-panel {
+  position: relative;
+
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+#scroll-svg {
+  width: 100%;
+  display: block;
+}
+
+.scroll-content {
+  position: absolute;
+
+  top: 24%;
+  left: 14%;
+  right: 14%;
+
+  opacity: 0;
+
+  transition: opacity 0.5s ease;
+
+  color: #2b1b0a;
+
+  pointer-events: none;
+}
+
+.scroll-content.visible {
+  opacity: 1;
+}
+
+.scroll-content h2 {
+  font-size: 1.7rem;
+  margin-bottom: 1.5rem;
+}
+
+.scroll-content p {
+  font-size: 1rem;
+  line-height: 1.8;
+}
+/* ========================================
+   MOBIL
+======================================== */
+
+@media (max-width: 799px) {
+  #scroll-svg {
+    height: 650px;
+  }
+
+  .scroll-content {
+    top: 110px;
+    left: 30px;
+    right: 30px;
+  }
+
+  .scroll-content h2 {
+    font-size: 1.3rem;
+  }
+
+  .scroll-content p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+}
+
+/* ========================================
+   ACCORDION
+======================================== */
+
+.accordion {
+  display: grid;
+  gap: var(--space-05);
+}
+
+.accordion-item {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.accordion-item p {
+  padding: 0 var(--space-1) var(--space-1);
+  color: var(--color-muted);
+}
+
+/* ========================================
+   POPOVER
+======================================== */
+
+[popover] {
+  grid-column: 2;
+
+  width: 50ch;
+  max-width: 90vw;
+  max-height: 90vh;
+
+  overflow: auto;
+  box-sizing: border-box;
+
+  padding: var(--space-1);
+
+  border: 1px solid #aaa;
+  border-radius: 10px;
+
+  background: white;
+  color: #222;
+
+  opacity: 0;
+  transition: 0.5s;
+  transition-behavior: allow-discrete;
+}
+
+[popover] img {
+  max-height: 30vh;
+  object-fit: cover;
+}
+
+[popover] button {
+  margin-top: auto;
+  border-radius: var(--space-05);
+}
+
+[popover]:popover-open {
+  display: grid;
+  gap: var(--space-1);
+  opacity: 1;
+}
+
+[popover]::backdrop {
+  background: rgb(0 0 0 / 15%);
+}
+
+@starting-style {
+  :popover-open {
+    opacity: 0;
+  }
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (min-width: 800px) {
+  .svg-layout {
+    display: grid;
+    gap: var(--space-2);
+    align-items: start;
+    grid-template-columns: 1fr min(40%, 36ch);
+  }
+
+  .opsamling-page {
+    grid-template-columns: minmax(0, 44ch) minmax(20rem, 1fr);
+  }
+}

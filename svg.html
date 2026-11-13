@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interaktiv SVG | Eventnavn</title>
+
+  <link rel="stylesheet" href="./starter.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="header-content">
+
+      <img class="site-logo" src="./imgs/logoheader.svg" alt="Logo">
+
+      <nav class="site-nav">
+        <ul class="menu">
+          <li class="close-menu">
+            <button class="close-btn">&times;</button>
+          </li>
+
+          <li><a href="./">Forside</a></li>
+          <li><a href="./svg.html" aria-current="page">Interaktiv SVG</a></li>
+          <li><a href="./form.html">Formular</a></li>
+        </ul>
+      </nav>
+
+      <div class="burger">
+        <button class="burgerimg">
+          <img src="./imgs/Burger.svg" alt="burgermenu">
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <main>
+
+    <section class="svg-page">
+
+      <header class="svg-intro">
+        <h1>Udforsk den mystiske markedsplads</h1>
+
+        <p>
+          Klik på genstandene på bordet for at lære mere om eventets aktiviteter.
+        </p>
+      </header>
+
+      <section class="svg-layout">
+
+        <div class="svg-container">
+
+          <object id="mystic-svg" data="./imgs/flasker-lyssestage-tarot-krystalkugle.svg" type="image/svg+xml">
+
+            Din browser understøtter ikke SVG.
+
+          </object>
+
+        </div>
+
+        <article class="scroll-panel">
+
+          <object id="scroll-svg" data="./imgs/skriftrulle.svg" type="image/svg+xml">
+          </object>
+
+          <div class="scroll-content">
+
+            <h2 id="info-title"></h2>
+
+            <p id="info-text"></p>
+
+          </div>
+
+        </article>
+
+      </section>
+
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <p>Eventnavn</p>
+      <p>Footer</p>
+    </div>
+  </footer>
+
+  <script src="./script.js"></script>
+
+</body>
+
+</html>
