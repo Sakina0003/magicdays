@@ -36,14 +36,38 @@
   <main>
     <section class="opsamling-page">
       <div class="opsamling-intro">
-        <h1>Opsamling</h1>
-        <p>Vis brugerens valg som et pass, en invitation eller noget andet, der passer til dit event.</p>
-        <div class="actions">
-          <a class="button" href="./form.html">Tilbage til formular</a>
-        </div>
+        <p class="result-subtitle">MAGIC DAYS · DIN PERSONLIGE LÆSNING</p>
+        <h1>Din magiske følgesvend er...</h1>
+        <h2 id="result-title"></h2>
+      
+        <p id="result-intro"></p>
       </div>
-
-      <article class="opsamling-placeholder"></article>
+      
+      <article class="opsamling-placeholder">
+      
+        <div class="companion-image" id="companion-image">
+          <img src="./imgs/kanin.svg" id="kanin-image" alt="kanin foran månen">
+          <img src="./imgs/Kat.svg" id="kat-image" alt="kat foran månen ">
+          <img src="./imgs/ravn.svg" id="krage-image" alt="ravn foran månen">
+        </div>
+      
+        <div class="companion-description">
+          <h3>Om din følgesvend</h3>
+          <p id="result-description"></p>
+      
+          <h3>Dette kendetegner dig</h3>
+          <ul id="result-traits"></ul>
+        </div>
+      
+        <p class="result-ending">
+          Må din magiske rejse begynde...
+        </p>
+      
+        <div class="actions">
+          <a class="button" href="./form.html">Tag quizzen igen</a>
+        </div>
+      
+      </article>
     </section>
   </main>
 

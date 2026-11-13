@@ -33,16 +33,123 @@
 
   </header>
 
-  <main>
-    <section class="form-page">
-      <header class="form-intro">
-        <h1>Formular</h1>
-        <p>Lav en formular, der sender brugeren videre til opsamlingssiden.</p>
-      </header>
+<main>
+  <section class="form-page">
+    <header class="form-intro">
+      <h1>Formular</h1>
+      <p>Lav en formular, der sender brugeren videre til opsamlingssiden.</p>
+    </header>
 
-      <form class="form-placeholder" action="./opsamling.html"></form>
-    </section>
-  </main>
+    <form class="form-companion" id="quiz-form" action="./opsamling.html">
+      <h2>Find your companion</h2>
+
+      <label for="name">Hvad hedder du?</label>
+      <input type="text" id="name" name="name" placeholder="Skriv dit navn..." required>
+
+      <fieldset class="group">
+        <legend>1. Du træder ind i en gammel heksehytte. Hvad fanger din opmærksomhed først?</legend>
+
+        <label for="books">
+          <input type="radio" value="25" name="question1" id="books" required />
+          En samling mærkelige bøger og mystiske genstande.
+        </label>
+
+        <label for="garden">
+          <input type="radio" value="10" name="question1" id="garden" />
+          En lille have fyldt med usædvanlige planter.
+        </label>
+
+        <label for="cards">
+          <input type="radio" value="20" name="question1" id="cards" />
+          Et mystisk kort dækket af håndskrevne symboler.
+        </label>
+
+        <label for="fireplace">
+          <input type="radio" value="5" name="question1" id="fireplace" />
+          En hyggelig pejs og en behagelig lænestol.
+        </label>
+      </fieldset>
+
+      <label for="question2">2. En mystisk trylledrik er ved at blive brygget. Hvilken ingrediens ville du
+        tilføje?</label>
+      <select id="question2" name="question2" required>
+        <option value="" disabled selected>Vælg en ingrediens...</option>
+        <option value="25">Måneblomsterblade</option>
+        <option value="5">Vilde bær</option>
+        <option value="20">Ravnefjer</option>
+        <option value="10">Kanel og urter</option>
+      </select>
+
+      <fieldset class="group">
+        <legend>3. Du har én aften til at forberede en magisk sammenkomst. Hvad ville du gøre? - vælg op til to svar
+        </legend>
+
+        <label for="explore">
+          <input type="checkbox" value="25" name="question3" id="explore" />
+          Udforske et sted, jeg aldrig har været før.
+        </label>
+
+        <label for="friends">
+          <input type="checkbox" value="5" name="question3" id="friends" />
+          Forberede noget særligt til mine venner.
+        </label>
+
+        <label for="magicbook">
+          <input type="checkbox" value="20" name="question3" id="magicbook" />
+          Læse i en gammel bog om magi.
+        </label>
+
+        <label for="decor">
+          <input type="checkbox" value="10" name="question3" id="decor" />
+          Pynte stedet, hvor sammenkomsten skal holdes.
+        </label>
+
+        <label for="treasure">
+          <input type="checkbox" value="15" name="question3" id="treasure" />
+          Lede efter skjulte skatte og usædvanlige genstande.
+        </label>
+
+        <p id="question3-error" class="error-message" aria-live="polite"></p>
+      </fieldset>
+
+      <fieldset class="group">
+        <legend>4. Du finder en mystisk besked uden for dit vindue. Hvad gør du?</legend>
+
+        <label for="inspect">
+          <input type="radio" value="25" name="question4" id="inspect" required />
+          Undersøger den med det samme. Jeg er nødt til at vide, hvad der står.
+        </label>
+
+        <label for="safekeep">
+          <input type="radio" value="15" name="question4" id="safekeep" />
+          Gemmer den et sikkert sted og undersøger den grundigt.
+        </label>
+
+        <label for="track">
+          <input type="radio" value="20" name="question4" id="track" />
+          Leder efter spor, der kan afsløre, hvem der har efterladt den.
+        </label>
+
+        <label for="wait">
+          <input type="radio" value="5" name="question4" id="wait" />
+          Venter og ser, om der sker noget mere.
+        </label>
+      </fieldset>
+
+      <label for="question5">5. Vælg den magiske genstand, du helst ville eje.</label>
+      <select id="question5" name="question5" required>
+        <option value="" disabled selected>Vælg en genstand...</option>
+        <option value="25">Et antikt sølvspejl.</option>
+        <option value="5">En lille fortryllet lanterne.</option>
+        <option value="20">En bog med glemte hemmeligheder.</option>
+        <option value="15">Et mystisk krystalvedhæng.</option>
+      </select>
+
+      <button type="submit">Find min følgesvend</button>
+    </form>
+
+  </section>
+</main>
 
   <footer class="site-footer">
     <div class="footer-content">

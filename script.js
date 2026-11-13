@@ -214,3 +214,213 @@ if (svgObject) {
     });
   });
 }
+
+// ==========================================
+// FORM PAGE
+// ==========================================
+
+const form = document.querySelector("#quiz-form");
+
+if (form) {
+
+  // QUESTION 3: LIMIT CHECKBOXES TO 2
+
+  const checkboxes = document.querySelectorAll(
+    'input[name="question3"]'
+  );
+
+  const errorMessage = document.querySelector("#question3-error");
+
+  checkboxes.forEach((checkbox) => {
+
+    checkbox.addEventListener("change", () => {
+
+      const selected = document.querySelectorAll(
+        'input[name="question3"]:checked'
+      );
+
+      if (selected.length > 2) {
+        checkbox.checked = false;
+        errorMessage.textContent = "Du kan højst vælge to svar.";
+      } else {
+        errorMessage.textContent = "";
+      }
+
+    });
+
+  });
+
+
+  // FORM SUBMISSION
+
+  form.addEventListener("submit", (event) => {
+
+    // Check that at least one checkbox is selected
+
+    const selectedCheckboxes = document.querySelectorAll(
+      'input[name="question3"]:checked'
+    );
+
+    if (selectedCheckboxes.length === 0) {
+      event.preventDefault();
+      errorMessage.textContent = "Vælg mindst ét svar.";
+      return;
+    }
+
+    // Get the visitor's name
+
+    const name = document.querySelector("#name").value;
+
+    // Get the selected answers
+
+    const question1 = document.querySelector(
+      'input[name="question1"]:checked'
+    );
+
+    const question2 = document.querySelector("#question2");
+
+    const question4 = document.querySelector(
+      'input[name="question4"]:checked'
+    );
+
+    const question5 = document.querySelector("#question5");
+
+
+    // Calculate the total score
+
+    let totalScore = 0;
+
+    totalScore += Number(question1.value);
+    totalScore += Number(question2.value);
+    totalScore += Number(question4.value);
+    totalScore += Number(question5.value);
+
+    // Add the selected checkbox scores
+
+    selectedCheckboxes.forEach((checkbox) => {
+      totalScore += Number(checkbox.value);
+    });
+
+
+    // Save name and score
+
+    sessionStorage.setItem("visitorName", name);
+    sessionStorage.setItem("totalScore", totalScore);
+
+
+    // Go to the results page
+
+    event.preventDefault();
+    window.location.href = "./opsamling.html";
+
+  });
+
+}
+
+// ==========================================
+// RESULTS PAGE
+// ==========================================
+
+const resultTitle = document.querySelector("#result-title");
+const resultIntro = document.querySelector("#result-intro");
+const resultDescription = document.querySelector("#result-description");
+const resultTraits = document.querySelector("#result-traits");
+
+if (resultTitle) {
+
+  // Retrieve saved information
+
+  const name = sessionStorage.getItem("visitorName");
+  const score = Number(sessionStorage.getItem("totalScore"));
+
+  // Check if the visitor has completed the quiz
+
+  if (name === null || sessionStorage.getItem("totalScore") === null) {
+
+    resultTitle.textContent = "Intet resultat fundet";
+    resultIntro.textContent = "Du skal først gennemføre quizzen.";
+    resultDescription.textContent = "";
+
+  } else {
+
+    // Companion descriptions
+
+    let companion;
+
+    if (score >= 101) {
+
+      companion = {
+        name: "Katten",
+        intro: "Din magiske følgesvend er katten!",
+        description:
+          "Du er en selvstændig sjæl med en stærk intuition og en naturlig tiltrækning til det mystiske. Du lægger mærke til detaljer, som andre ofte overser, og du foretrækker at følge din egen vej frem for at gøre, hvad alle andre gør. Ligesom katten rummer du både nysgerrighed og mystik. Du ved, hvornår du skal udforske verden, og hvornår du skal trække dig tilbage og lytte til din egen indre stemme.",
+        traits: [
+          "Selvstændig og fri",
+          "Intuitiv og opmærksom",
+          "Mystisk og nysgerrig"
+        ]
+      };
+
+    } else if (score >= 51) {
+
+      companion = {
+        name: "Kragen",
+        intro: "Din magiske følgesvend er kragen!",
+        description:
+          "Du har et skarpt sind og en naturlig evne til at se sammenhænge, som andre måske overser. Du er opfindsom, videbegærlig og elsker at opdage nye ting. Ligesom kragen samler du på oplevelser, viden og små hemmeligheder fra verden omkring dig. Du tænker gerne ud af boksen og finder ofte kreative løsninger, når andre har givet op.",
+        traits: [
+          "Vis og opfindsom",
+          "Observant og nysgerrig",
+          "Kreativ og eventyrlysten"
+        ]
+      };
+
+    } else {
+
+      companion = {
+        name: "Kaninen",
+        intro: "Din magiske følgesvend er kaninen!",
+        description:
+          "Du har et varmt hjerte og en nysgerrighed, der får dig til at opdage skønheden i selv de mindste ting. Du er opmærksom på dine omgivelser og har en særlig evne til at mærke stemninger omkring dig. Ligesom kaninen møder du verden med forsigtighed, men også med en stor lyst til at udforske. Din rolige og venlige natur gør dig til en værdsat følgesvend.",
+        traits: [
+          "Blid og omsorgsfuld",
+          "Nysgerrig og opmærksom",
+          "Rolig og betænksom"
+        ]
+      };
+
+    }
+
+    // Display the result
+
+    resultTitle.textContent = companion.name;
+    resultIntro.textContent = `${name}, ${companion.intro.toLowerCase()}`;
+    resultDescription.textContent = companion.description;
+// Display companion image
+    const companionImages = {
+      Katten: "#kat-image",
+      Kragen: "#krage-image",
+      Kaninen: "#kanin-image",
+    };
+
+    const selectedImage = document.querySelector(
+      companionImages[companion.name],
+    );
+
+    selectedImage.style.display = "block";
+
+    // Display personality traits
+
+    companion.traits.forEach((trait) => {
+
+      const listItem = document.createElement("li");
+
+      listItem.textContent = trait;
+
+      resultTraits.appendChild(listItem);
+
+    });
+
+  }
+
+}

@@ -586,7 +586,38 @@ main > * {
     opacity: 0;
   }
 }
+/* ========================================
+   FORM OG OPSAMLING SIDE
+======================================== */
+/*error message form*/
+.error-message {
+  color: #e07878;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+/*form styling*/
+label {
+  display: block;
+}
 
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+}
+button {
+  display: block;
+}
+/*hide images*/
+.companion-image img {
+  display: none;
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+}
 /* ========================================
    RESPONSIVE
 ======================================== */
