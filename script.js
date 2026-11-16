@@ -127,8 +127,7 @@ if (svgObject) {
       element.addEventListener("mouseleave", () => {
         // Behold krystal-gløden når lyset er slukket
         if (element === krystal && !lysTaendt) {
-          element.style.filter =
-            "drop-shadow(0 0 25px #7ce8ff) drop-shadow(0 0 50px #7ce8ff)";
+          element.style.filter = "drop-shadow(0 0 25px #7ce8ff) drop-shadow(0 0 50px #7ce8ff)";
         } else {
           element.style.filter = "";
         }
@@ -146,10 +145,7 @@ if (svgObject) {
     // ========================================
 
     flasker?.addEventListener("click", () => {
-      updateScroll(
-        "Eliksirer",
-        "Lav dine egne eliksirer og udforsk urter, krydderier og magiske ingredienser. Du kan deltage i workshops og købe ingredienser med hjem.",
-      );
+      updateScroll("Eliksirer", "Lav dine egne eliksirer og udforsk urter, krydderier og magiske ingredienser. Du kan deltage i workshops og købe ingredienser med hjem.");
     });
 
     // ========================================
@@ -157,10 +153,7 @@ if (svgObject) {
     // ========================================
 
     kort?.addEventListener("click", () => {
-      updateScroll(
-        "Tarotkort",
-        "Få læst tarotkort og lær om symbolik og fortolkning. Der vil både være oplæg og mulighed for selv at prøve kræfter med kortene.",
-      );
+      updateScroll("Tarotkort", "Få læst tarotkort og lær om symbolik og fortolkning. Der vil både være oplæg og mulighed for selv at prøve kræfter med kortene.");
     });
 
     // ========================================
@@ -168,10 +161,7 @@ if (svgObject) {
     // ========================================
 
     krystal?.addEventListener("click", () => {
-      updateScroll(
-        "Krystalkugle",
-        "Oplev spændende foredrag om krystallers symbolik, energi og anvendelse. Der vil også være mulighed for at købe krystaller.",
-      );
+      updateScroll("Krystalkugle", "Oplev spændende foredrag om krystallers symbolik, energi og anvendelse. Der vil også være mulighed for at købe krystaller.");
     });
 
     // ========================================
@@ -187,14 +177,10 @@ if (svgObject) {
         svgContainer.style.filter = "brightness(0.65)";
 
         if (krystal) {
-          krystal.style.filter =
-            "drop-shadow(0 0 25px #7ce8ff) drop-shadow(0 0 50px #7ce8ff)";
+          krystal.style.filter = "drop-shadow(0 0 25px #7ce8ff) drop-shadow(0 0 50px #7ce8ff)";
         }
 
-        updateScroll(
-          "Lyset er slukket",
-          "Mørket sænker sig over den mystiske markedsplads, og krystalkuglen begynder at udsende et svagt magisk skær.",
-        );
+        updateScroll("Lyset er slukket", "Mørket sænker sig over den mystiske markedsplads, og krystalkuglen begynder at udsende et svagt magisk skær.");
       } else {
         flamme.style.opacity = "1";
 
@@ -204,10 +190,7 @@ if (svgObject) {
           krystal.style.filter = "";
         }
 
-        updateScroll(
-          "Lyset er tændt",
-          "Lysestagen spreder igen sit varme skær over markedspladsen.",
-        );
+        updateScroll("Lyset er tændt", "Lysestagen spreder igen sit varme skær over markedspladsen.");
       }
 
       lysTaendt = !lysTaendt;
@@ -222,22 +205,15 @@ if (svgObject) {
 const form = document.querySelector("#quiz-form");
 
 if (form) {
-
   // QUESTION 3: LIMIT CHECKBOXES TO 2
 
-  const checkboxes = document.querySelectorAll(
-    'input[name="question3"]'
-  );
+  const checkboxes = document.querySelectorAll('input[name="question3"]');
 
   const errorMessage = document.querySelector("#question3-error");
 
   checkboxes.forEach((checkbox) => {
-
     checkbox.addEventListener("change", () => {
-
-      const selected = document.querySelectorAll(
-        'input[name="question3"]:checked'
-      );
+      const selected = document.querySelectorAll('input[name="question3"]:checked');
 
       if (selected.length > 2) {
         checkbox.checked = false;
@@ -245,21 +221,15 @@ if (form) {
       } else {
         errorMessage.textContent = "";
       }
-
     });
-
   });
-
 
   // FORM SUBMISSION
 
   form.addEventListener("submit", (event) => {
-
     // Check that at least one checkbox is selected
 
-    const selectedCheckboxes = document.querySelectorAll(
-      'input[name="question3"]:checked'
-    );
+    const selectedCheckboxes = document.querySelectorAll('input[name="question3"]:checked');
 
     if (selectedCheckboxes.length === 0) {
       event.preventDefault();
@@ -273,18 +243,13 @@ if (form) {
 
     // Get the selected answers
 
-    const question1 = document.querySelector(
-      'input[name="question1"]:checked'
-    );
+    const question1 = document.querySelector('input[name="question1"]:checked');
 
     const question2 = document.querySelector("#question2");
 
-    const question4 = document.querySelector(
-      'input[name="question4"]:checked'
-    );
+    const question4 = document.querySelector('input[name="question4"]:checked');
 
     const question5 = document.querySelector("#question5");
-
 
     // Calculate the total score
 
@@ -301,20 +266,16 @@ if (form) {
       totalScore += Number(checkbox.value);
     });
 
-
     // Save name and score
 
     sessionStorage.setItem("visitorName", name);
     sessionStorage.setItem("totalScore", totalScore);
 
-
     // Go to the results page
 
     event.preventDefault();
     window.location.href = "./opsamling.html";
-
   });
-
 }
 
 // ==========================================
@@ -327,7 +288,6 @@ const resultDescription = document.querySelector("#result-description");
 const resultTraits = document.querySelector("#result-traits");
 
 if (resultTitle) {
-
   // Retrieve saved information
 
   const name = sessionStorage.getItem("visitorName");
@@ -336,59 +296,35 @@ if (resultTitle) {
   // Check if the visitor has completed the quiz
 
   if (name === null || sessionStorage.getItem("totalScore") === null) {
-
     resultTitle.textContent = "Intet resultat fundet";
     resultIntro.textContent = "Du skal først gennemføre quizzen.";
     resultDescription.textContent = "";
-
   } else {
-
     // Companion descriptions
 
     let companion;
 
     if (score >= 101) {
-
       companion = {
         name: "Katten",
         intro: "Din magiske følgesvend er katten!",
-        description:
-          "Du er en selvstændig sjæl med en stærk intuition og en naturlig tiltrækning til det mystiske. Du lægger mærke til detaljer, som andre ofte overser, og du foretrækker at følge din egen vej frem for at gøre, hvad alle andre gør. Ligesom katten rummer du både nysgerrighed og mystik. Du ved, hvornår du skal udforske verden, og hvornår du skal trække dig tilbage og lytte til din egen indre stemme.",
-        traits: [
-          "Selvstændig og fri",
-          "Intuitiv og opmærksom",
-          "Mystisk og nysgerrig"
-        ]
+        description: "Du er en selvstændig sjæl med en stærk intuition og en naturlig tiltrækning til det mystiske. Du lægger mærke til detaljer, som andre ofte overser, og du foretrækker at følge din egen vej frem for at gøre, hvad alle andre gør. Ligesom katten rummer du både nysgerrighed og mystik. Du ved, hvornår du skal udforske verden, og hvornår du skal trække dig tilbage og lytte til din egen indre stemme.",
+        traits: ["Selvstændig og fri", "Intuitiv og opmærksom", "Mystisk og nysgerrig"],
       };
-
     } else if (score >= 51) {
-
       companion = {
         name: "Kragen",
         intro: "Din magiske følgesvend er kragen!",
-        description:
-          "Du har et skarpt sind og en naturlig evne til at se sammenhænge, som andre måske overser. Du er opfindsom, videbegærlig og elsker at opdage nye ting. Ligesom kragen samler du på oplevelser, viden og små hemmeligheder fra verden omkring dig. Du tænker gerne ud af boksen og finder ofte kreative løsninger, når andre har givet op.",
-        traits: [
-          "Vis og opfindsom",
-          "Observant og nysgerrig",
-          "Kreativ og eventyrlysten"
-        ]
+        description: "Du har et skarpt sind og en naturlig evne til at se sammenhænge, som andre måske overser. Du er opfindsom, videbegærlig og elsker at opdage nye ting. Ligesom kragen samler du på oplevelser, viden og små hemmeligheder fra verden omkring dig. Du tænker gerne ud af boksen og finder ofte kreative løsninger, når andre har givet op.",
+        traits: ["Vis og opfindsom", "Observant og nysgerrig", "Kreativ og eventyrlysten"],
       };
-
     } else {
-
       companion = {
         name: "Kaninen",
         intro: "Din magiske følgesvend er kaninen!",
-        description:
-          "Du har et varmt hjerte og en nysgerrighed, der får dig til at opdage skønheden i selv de mindste ting. Du er opmærksom på dine omgivelser og har en særlig evne til at mærke stemninger omkring dig. Ligesom kaninen møder du verden med forsigtighed, men også med en stor lyst til at udforske. Din rolige og venlige natur gør dig til en værdsat følgesvend.",
-        traits: [
-          "Blid og omsorgsfuld",
-          "Nysgerrig og opmærksom",
-          "Rolig og betænksom"
-        ]
+        description: "Du har et varmt hjerte og en nysgerrighed, der får dig til at opdage skønheden i selv de mindste ting. Du er opmærksom på dine omgivelser og har en særlig evne til at mærke stemninger omkring dig. Ligesom kaninen møder du verden med forsigtighed, men også med en stor lyst til at udforske. Din rolige og venlige natur gør dig til en værdsat følgesvend.",
+        traits: ["Blid og omsorgsfuld", "Nysgerrig og opmærksom", "Rolig og betænksom"],
       };
-
     }
 
     // Display the result
@@ -396,31 +332,25 @@ if (resultTitle) {
     resultTitle.textContent = companion.name;
     resultIntro.textContent = `${name}, ${companion.intro.toLowerCase()}`;
     resultDescription.textContent = companion.description;
-// Display companion image
+    // Display companion image
     const companionImages = {
       Katten: "#kat-image",
       Kragen: "#krage-image",
       Kaninen: "#kanin-image",
     };
 
-    const selectedImage = document.querySelector(
-      companionImages[companion.name],
-    );
+    const selectedImage = document.querySelector(companionImages[companion.name]);
 
     selectedImage.style.display = "block";
 
     // Display personality traits
 
     companion.traits.forEach((trait) => {
-
       const listItem = document.createElement("li");
 
       listItem.textContent = trait;
 
       resultTraits.appendChild(listItem);
-
     });
-
   }
-
 }
