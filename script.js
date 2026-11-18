@@ -27,6 +27,21 @@ if (closeBtn && menu) {
     menu.classList.remove("nav-active");
   });
 }
+// ========================================
+// LIGHTMODE TOGGLE
+// ========================================
+
+const themeToggle = document.querySelector("#theme-toggle");
+
+themeToggle.addEventListener("click", function () {
+  document.documentElement.classList.toggle("light-mode");
+
+  if (document.documentElement.classList.contains("light-mode")) {
+    themeToggle.textContent = "Dark Mode";
+  } else {
+    themeToggle.textContent = "Light Mode";
+  }
+});
 
 // ========================================
 // SKRIFTRULLE

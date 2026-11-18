@@ -18,7 +18,18 @@ html {
   --space-2: 2rem;
   --space-3: 3rem;
 }
+/* Light mode */
+.light-mode {
+  --color-page: #f5eedd;
+  --color-header: #e3d5bd;
+  --color-surface: #4b3a57;
 
+  --color-text: rgb(231, 218, 172);
+  --color-surface-text: #16101a;
+  --color-muted: #716778;
+
+  --color-border: #9b7950;
+}
 /* ========================================
    GLOBALT LAYOUT
 ======================================== */
@@ -146,7 +157,41 @@ main > * {
 .menu a[aria-current="page"]::after {
   transform: translateX(-50%) scaleX(1);
 }
+/* ========================================
+   Lightmode button
+======================================== */
+#theme-toggle {
+  padding: 0.6rem 1rem;
 
+  background-color: transparent;
+  color: var(--color-surface-text);
+
+  border: 1px solid var(--color-border);
+  border-radius: 2rem;
+
+  font-family: inherit;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+
+  cursor: pointer;
+  transition:
+    background-color 0.3s,
+    color 0.3s,
+    border-color 0.3s;
+
+  margin-left: 2rem;
+  flex-shrink: 0;
+}
+
+#theme-toggle:hover {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+}
+
+#theme-toggle:focus-visible {
+  outline: 2px solid var(--color-border);
+  outline-offset: 4px;
+}
 /* ========================================
    BURGER MENU
 ======================================== */
@@ -245,10 +290,12 @@ main > * {
   display: grid;
   gap: var(--space-2);
   grid-template-columns: 1fr;
+  color: var(--color-surface-text);
 }
 .intro div {
   max-width: 60ch;
 }
+
 @media (min-width: 768px) {
   .intro {
     grid-template-columns: 1fr 1fr;
