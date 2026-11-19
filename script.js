@@ -30,20 +30,43 @@ if (closeBtn && menu) {
 // ========================================
 // LIGHTMODE TOGGLE
 // ========================================
+
 const themeToggle = document.getElementById("theme-toggle");
 const themeIcon = document.getElementById("theme-icon");
 
-let isLightMode = false;
+/*
+  Tjekker om brugeren tidligere har valgt et tema.
+*/
+const savedTheme = localStorage.getItem("theme");
 
+/*
+  Hvis light mode var aktiv sidst,
+  aktiveres den igen ved indlæsning.
+*/
+if (savedTheme === "light") {
+  document.body.classList.add("light-mode");
+  themeIcon.src = "./imgs/Switchlightmode.svg";
+} else {
+  themeIcon.src = "./imgs/Switchdarkmode.svg";
+}
+
+/*
+  Skifter mellem dark og light mode.
+  Gemmer samtidig brugerens valg.
+*/
 themeToggle.addEventListener("click", () => {
-  isLightMode = !isLightMode;
-
   document.body.classList.toggle("light-mode");
+
+  const isLightMode = document.body.classList.contains("light-mode");
 
   if (isLightMode) {
     themeIcon.src = "./imgs/Switchlightmode.svg";
+
+    localStorage.setItem("theme", "light");
   } else {
     themeIcon.src = "./imgs/Switchdarkmode.svg";
+
+    localStorage.setItem("theme", "dark");
   }
 });
 
