@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Redaction+10:ital,wght@0,400;0,700;1,400&family=Redaction:ital,wght@0,400;0,700;1,400&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Baskervville+SC:wght@400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Redaction+10:ital,wght@0,400;0,700;1,400&family=Redaction:ital,wght@0,400;0,700;1,400&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap"
     rel="stylesheet">
   <title>Magic Days</title>
   <link rel="stylesheet" href="./starter.css">
@@ -16,117 +16,231 @@
 
 <body>
   <header class="site-header">
-    <div class="header-content">
+    <button id="theme-toggle" type="button" aria-label="Skift tema">
 
-      <a href="./"><img class="site-logo" src="./imgs/logoheader.svg" alt="Logo"></a>
-      <button id="theme-toggle" type="button">
-        Light Mode
-      </button>
+      <img id="theme-icon" src="./imgs/Switchdarkmode.svg" alt="Skift tema">
+
+    </button>
+
+    <div class="nav-bar">
+      <div class="mobile-logo">
+        <a href="./">
+          <img src="./imgs/MagicDaysMobileversionNew copy.svg" alt="Magic Days">
+        </a>
+      </div>
+
       <nav class="site-nav">
+
         <ul class="menu">
+
           <li class="close-menu">
             <button class="close-btn">&times;</button>
           </li>
-          <li><a href="./" aria-current="page">Forside</a></li>
+
+          <li><a href="./">Forside</a></li>
           <li><a href="./svg.html">Interaktiv SVG</a></li>
+
+          <li class="menu-logo">
+            <a href="./" class="logo-link">
+              <img class="site-logo" src="./imgs/LogoMagicDaysfinalwithbg copy.svg" alt="Magic Days">
+            </a>
+          </li>
+
           <li><a href="./form.html">Formular</a></li>
-          <li><a href="./koeb.html">Billetter</a></li>
+          <li>
+            <a href="./koeb.html" class="ticket-link">Billetter</a>
+          </li>
+
         </ul>
+
       </nav>
+
       <div class="burger">
         <button class="burgerimg">
-          <img src="./imgs/Burger.svg" alt="burger">
+          <img src="./imgs/Burger.svg" alt="Menu">
         </button>
       </div>
+
     </div>
 
   </header>
 
   <main>
     <section class="hero">
-      <div class="grid_hero1"><img src="./imgs/LogoMagicDaysSVG.svg" alt="bannerLogo"></div>
-    </section>
-    <section class="intro">
       <div>
         <h2>En Magisk Verden</h2>
-        <p>Træd ind i et univers fyldt med inspiration, traditioner og nye perspektiver. Magic Days samler mennesker med
-          interesse for naturens mystik, spiritualitet og gamle håndværk.</p>
-
-        <p>Uanset om du allerede kender til den spirituelle verden eller blot er nysgerrig på at udforske noget nyt, er
-          der plads
-          til dig. Kom som du er, mød ligesindede, og vær med til en dag fyldt med nærvær, inspiration og fællesskab.
-        </p>
-      </div>
-      <img src="./imgs/intro.webp" alt="billede af event">
-    </section>
-    <div class="flex">
-      <section class="events tarot">
-        <img src="./imgs/tarot-card.webp" alt="tarot kort">
-        <div>
-          <h2>Tarot læsning</h2>
-          <p>Er du nysgerrig på, hvad kortene kan fortælle? Træd ind i tarotkortenes verden, og oplev en anderledes måde
-            at udforske
-            dine tanker og muligheder på.</p>
-        </div>
-        <button class="button" popovertarget="tarot-pop">Læs mere</button>
-      </section>
-      <section class="events potions">
-        <img src="./imgs/potions-card.webp" alt="">
-        <h2>Eleksir Workshop</h2>
-        <p>Dyk ned i naturens gamle traditioner, og bliv inspireret af urter, planter og naturlige ingredienser. Måske
-          finder du
-          inspiration til din egen lille urtehylde?</p>
-        <button class="button" popovertarget="potions-pop">Læs mere</button>
-      </section>
-      <section class="events crystals">
-        <img src="./imgs/crystals-card.webp" alt="">
-        <h2>Krystaller Og Mineraller</h2>
-        <p>Fra glitrende ametyst til smuk rosenkvarts - sten og krystaller har fascineret mennesker i århundreder. Kom
-          og udforsk
-          deres historier, symbolik og betydning.</p>
-        <button class="button" popovertarget="crystal-pop">Læs mere</button>
-      </section>
-    </div>
-    <section>
-      <div id="tarot-pop" popover>
-        <img src="./imgs/tarot-pop.webp" alt="">
-        <h2>Tarot</h2>
-        <p>Få en personlig tarotlæsning, hvor kortenes symboler og betydninger danner udgangspunkt for en samtale om
-          dig, dine
-          tanker og de spørgsmål, du måske går rundt med.
-
-          Uanset om du er ny til tarot eller allerede kender kortene, er du velkommen til at være med. Kom med et åbent
-          sind, og
-          lad kortene inspirere dig til nye perspektiver.
-        </p>
-        <button popovertarget="tarot-pop">
-          Luk
-        </button>
-      </div>
-      <div id="crystal-pop" popover>
-        <img src="imgs/crystals-pop.webp" alt="">
-        <h2>Krystallernes univers</h2>
-        <p>Hvad er det egentlig, der gør krystaller så fascinerende? Kom med på en introduktion til forskellige sten og
-          krystaller,
-          deres oprindelse, historie og betydning i spirituelle traditioner.
-        </p>
-        <button popovertarget="crystal-pop">
-          Luk
-        </button>
-      </div>
-      <div id="potions-pop" popover>
-        <img src="./imgs/potions-pop.webp" alt="">
-        <h2>Naturens lille apotek</h2>
         <p>
-          Lær om forskellige urter og deres traditionelle anvendelser i naturmedicin. Vi udforsker blandt andet planter,
-          blomster
-          og naturlige ingredienser, som gennem generationer har været brugt i hjemmelavede remedier.</p>
-        <button popovertarget="potions-pop">
-          Luk
-        </button>
+          Træd ind i et univers af spiritualitet, mystik og fællesskab. Oplev workshops, markedsboder og magiske
+          aktiviteter for
+          både nybegyndere og erfarne besøgende.
+        </p>
+        <div class="hero-actions">
+
+          <a href="./koeb.html" class="hero-button">
+            Køb Billetter
+          </a>
+
+          <a href="#event-cards" class="scroll-button">
+
+            <span class="scroll-divider">✦</span>
+
+            <span class="scroll-text">
+              Udforsk Eventet
+            </span>
+
+            <span class="scroll-arrow">
+              ↓
+            </span>
+
+          </a>
+
+        </div>
       </div>
     </section>
 
+
+    <div class="flex" id="event-cards">
+
+      <!-- UDFORSK EVENTET -->
+
+      <section class="events event-overview">
+        <img src="./imgs/tarot-card.webp" alt="Magic Days aktiviteter">
+
+        <div>
+          <h2>Udforsk Eventet</h2>
+
+          <p>
+            Besøg den interaktive oplevelse og udforsk eventets aktiviteter,
+            workshops og forskellige oplevelser. Klik på genstandene og lær
+            mere om hvad der venter dig til Magic Days.
+          </p>
+        </div>
+
+        <button class="button" popovertarget="event-pop">
+          Læs mere
+        </button>
+      </section>
+
+      <!-- FIND DIN KOMPANION -->
+
+      <section class="events companion">
+        <img src="./imgs/crystals-card.webp" alt="Find din magiske kompanion">
+
+        <div>
+          <h2>Find Din Kompanion</h2>
+
+          <p>
+            Hvilken magisk ledsager matcher din personlighed? Tag testen og
+            opdag hvilken kompanion der passer bedst til din energi og dit
+            eventyr.
+          </p>
+        </div>
+
+        <button class="button" popovertarget="companion-pop">
+          Læs mere
+        </button>
+      </section>
+
+      <!-- EVENTKORT -->
+
+      <section class="events event-map">
+        <img src="./imgs/potions-card.webp" alt="Kort over eventområdet">
+
+        <div>
+          <h2>Kort over eventområdet</h2>
+
+          <p>
+            Få overblik over området og se hvor du finder
+            workshops, markedsboder, foredrag og
+            afslapningsområder under eventet.
+          </p>
+        </div>
+
+        <button class="button" popovertarget="map-pop">
+          Læs mere
+        </button>
+      </section>
+
+    </div>
+
+    <section>
+
+      <!-- POPUP 1 -->
+
+      <div id="event-pop" popover>
+
+        <img src="./imgs/tarot-pop.webp" alt="Magic Days aktiviteter">
+
+        <h2>Udforsk Eventet</h2>
+
+        <p>
+          Oplev Magic Days gennem vores interaktive oplevelse.
+          Klik på genstandene på bordet og udforsk eventets
+          aktiviteter, workshops og stemningsfulde områder.
+        </p>
+
+        <a href="./svg.html" class="button">
+          Udforsk Eventet
+        </a>
+
+        <button class="close-popover" popovertarget="event-pop">
+          Luk
+        </button>
+
+      </div>
+
+      <!-- POPUP 2 -->
+
+      <div id="companion-pop" popover>
+
+        <img src="./imgs/crystals-pop.webp" alt="Magisk kompanion">
+
+        <h2>Find Din Kompanion</h2>
+
+        <p>
+          Alle eventyrere har en ledsager. Gennem en række spørgsmål
+          finder testen den magiske kompanion som matcher din
+          personlighed, energi og interesser.
+        </p>
+
+        <a href="./form.html" class="button">
+          Tag Testen
+        </a>
+
+        <button class="close-popover" popovertarget="companion-pop">
+          Luk
+        </button>
+
+      </div>
+
+      <!-- POPUP 3 -->
+
+      <div id="map-pop" popover>
+
+        <img src="./imgs/potions-pop.webp" alt="Kort over området">
+
+        <h2>Eventkort</h2>
+
+        <p>
+          Få overblik over hele området og planlæg dit besøg.
+          Her finder du workshops, markedsområde, foredrag
+          og afslapningszoner samlet ét sted.
+        </p>
+
+        <a href="./404.html" class="button">
+          Se Eventkort
+        </a>
+
+        <p class="coming-soon">
+          Kortet er endnu ikke færdigt.
+        </p>
+        <button class="close-popover" popovertarget="map-pop">
+          Luk
+        </button>
+
+      </div>
+
+    </section>
   </main>
 
   <footer class="site-footer">

@@ -30,16 +30,20 @@ if (closeBtn && menu) {
 // ========================================
 // LIGHTMODE TOGGLE
 // ========================================
+const themeToggle = document.getElementById("theme-toggle");
+const themeIcon = document.getElementById("theme-icon");
 
-const themeToggle = document.querySelector("#theme-toggle");
+let isLightMode = false;
 
-themeToggle.addEventListener("click", function () {
-  document.documentElement.classList.toggle("light-mode");
+themeToggle.addEventListener("click", () => {
+  isLightMode = !isLightMode;
 
-  if (document.documentElement.classList.contains("light-mode")) {
-    themeToggle.textContent = "Dark Mode";
+  document.body.classList.toggle("light-mode");
+
+  if (isLightMode) {
+    themeIcon.src = "./imgs/Switchlightmode.svg";
   } else {
-    themeToggle.textContent = "Light Mode";
+    themeIcon.src = "./imgs/Switchdarkmode.svg";
   }
 });
 

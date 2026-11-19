@@ -20,19 +20,25 @@ html {
 }
 /* Light mode */
 .light-mode {
-  --color-page: #f5eedd;
-  --color-header: #e3d5bd;
-  --color-surface: #4b3a57;
+  --color-page: #ddd6be;
+  --color-surface: #d0c5a3;
 
-  --color-text: rgb(231, 218, 172);
+  --color-header: #4b3a57;
+
+  --color-text: #2b1b0a;
   --color-surface-text: #16101a;
-  --color-muted: #716778;
+  --color-muted: #5a4e42;
 
   --color-border: #9b7950;
 }
+
 /* ========================================
    GLOBALT LAYOUT
 ======================================== */
+
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   margin: 0;
@@ -58,54 +64,96 @@ main > * {
 }
 
 /* ========================================
-   HEADER & FOOTER
+   HEADER
+======================================== */
+.site-header {
+  background: #16101a;
+}
+/*
+  Hele headeren.
+  Position relative bruges til den dekorative linje nederst.
+*/
+.site-header {
+  grid-column: 1 / -1;
+
+  padding-top: 0.5rem;
+  padding-bottom: 0.25rem;
+
+  position: relative;
+}
+
+/*
+  Magisk lilla/guld adskillelseslinje mellem
+  header og hero-indhold.
+*/
+.site-header::after {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 2px;
+
+  background: linear-gradient(to right, transparent, #b28adf, #e9c989, #b28adf, transparent);
+}
+/* ========================================
+   Lightmode button
 ======================================== */
 
-.site-header,
-.site-footer {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: inherit;
-  background-color: var(--color-header);
-  color: var(--color-surface-text);
-}
-
-.header-content {
-  grid-column: 2;
-
+.theme-container {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
 
-  padding: 0rem 1rem;
+  justify-content: flex-start;
+
+  padding-left: 2rem;
+  padding-bottom: 0.5rem;
 }
 
-.site-logo {
-  height: 100px;
-  width: auto;
-  transform: scale(1.2);
-  transform-origin: left center;
+#theme-toggle {
+  background: none;
+  border: none;
+
+  padding: 0;
+
+  cursor: pointer;
 }
 
-.site-nav {
-  margin-left: auto;
+#theme-icon {
+  width: 60px;
+  height: auto;
+
+  display: block;
+
+  transition: transform 0.3s ease;
 }
 
-.footer-content {
-  grid-column: 2;
+#theme-toggle:hover #theme-icon {
+  transform: scale(1.05);
+}
+@media (max-width: 800px) {
+  #theme-toggle {
+    position: static;
 
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+    transform: none;
 
-  gap: var(--space-1);
-  padding-block: var(--space-1);
+    margin-left: auto;
+    margin-right: 1rem;
+  }
+
+  #theme-icon {
+    width: 42px;
+  }
 }
 
 /* ========================================
    NAVIGATION
 ======================================== */
 
+/*
+  Fjerner standard bullets og afstande.
+*/
 .menu,
 .menu li {
   margin: 0;
@@ -113,27 +161,93 @@ main > * {
   list-style: none;
 }
 
+/*
+  Desktop-menu med logo i midten.
+*/
 .menu {
   display: flex;
   align-items: center;
+  justify-content: center;
+
   gap: 2rem;
+
+  margin: 0;
+  padding: 0.25rem 0;
 }
+
+/* ========================================
+   LOGO
+======================================== */
+
+/*
+  Mobil-logo skjules som udgangspunkt.
+  Vises kun i mobil-versionen.
+*/
+.mobile-logo {
+  display: none;
+}
+
+/*
+  Desktop-logo i menuen.
+*/
+.menu-logo {
+  margin-inline: 1.75rem;
+
+  /* Løft logoet en smule */
+  transform: translateY(-4px);
+}
+
+.logo-link {
+  display: block;
+}
+
+.site-logo {
+  display: block;
+
+  height: 120px;
+  width: auto;
+
+  transition: transform 0.3s ease;
+}
+
+.logo-link:hover .site-logo {
+  transform: scale(1.04);
+}
+
+/*
+  Logoet skal ikke have samme hover-linje
+  som menupunkterne.
+*/
+.menu-logo a::after,
+.logo-link::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* ========================================
+   MENUPUNKTER
+======================================== */
 
 .menu a {
   position: relative;
   display: inline-block;
 
-  font-family: "Tinos", serif;
-  font-size: 1.2rem;
-  color: var(--color-surface-text);
+  font-family: "Baskervville SC", serif;
+
+  color: rgb(186, 145, 213);
   text-decoration: none;
+
   padding-bottom: 0.6rem;
 
   transition: color 0.3s ease;
 }
 
+/*
+  Den gyldne hover-linje under links.
+*/
 .menu a::after {
   content: "";
+
   position: absolute;
   left: 50%;
   bottom: 0;
@@ -145,6 +259,7 @@ main > * {
 
   transform: translateX(-50%) scaleX(0);
   transform-origin: center;
+
   transition: transform 0.3s ease;
 }
 
@@ -157,90 +272,97 @@ main > * {
 .menu a[aria-current="page"]::after {
   transform: translateX(-50%) scaleX(1);
 }
-/* ========================================
-   Lightmode button
-======================================== */
-#theme-toggle {
-  padding: 0.6rem 1rem;
-
-  background-color: transparent;
-  color: var(--color-surface-text);
-
-  border: 1px solid var(--color-border);
-  border-radius: 2rem;
-
-  font-family: inherit;
-  font-size: 0.85rem;
-  letter-spacing: 0.05em;
-
-  cursor: pointer;
-  transition:
-    background-color 0.3s,
-    color 0.3s,
-    border-color 0.3s;
-
-  margin-left: 2rem;
-  flex-shrink: 0;
-}
-
-#theme-toggle:hover {
-  background-color: var(--color-surface);
-  color: var(--color-text);
-}
-
-#theme-toggle:focus-visible {
-  outline: 2px solid var(--color-border);
-  outline-offset: 4px;
-}
-/* ========================================
-   BURGER MENU
-======================================== */
-
-.burger {
-  display: none;
-}
-
-.burgerimg {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-}
-
-.burgerimg img {
-  width: 40px;
-  height: auto;
-}
-
-/* Luk-knap */
-
-.close-menu {
-  position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-}
-
-.close-btn {
-  background: none;
-  border: none;
-  color: var(--color-border);
-  font-size: 2.5rem;
-  cursor: pointer;
-  padding: 0;
-  line-height: 1;
-}
 
 /* ========================================
    MOBILE
 ======================================== */
 
 @media (max-width: 800px) {
-  .burger {
+  /*
+    Billetter fremhæves som CTA (call to Action).
+  */
+  .ticket-link {
+    display: inline-block;
+
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+
+    padding: 0.5rem 1rem;
+
+    color: var(--color-border) !important;
+
+    text-align: left;
+  }
+
+  /*
+    Mobil-header får lysere baggrund
+    for bedre kontrast til logo og burger.
+  */
+  .site-header {
+    background: rgba(232, 204, 247, 0.539);
+  }
+
+  /*
+    Logo til venstre, burger til højre.
+  */
+  .nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0.5rem 1rem;
+  }
+
+  /*
+    Mobil-logo vises.
+  */
+  .mobile-logo {
     display: block;
   }
 
+  .mobile-logo img {
+    height: 75px;
+    width: auto;
+
+    display: block;
+  }
+
+  /*
+    Desktop-logo skjules i mobilmenu.
+  */
+  .menu-logo {
+    display: none;
+  }
+
+  /*
+    Burger-knap.
+  */
+  .burger {
+    display: block;
+
+    filter: brightness(0);
+  }
+
+  .burgerimg {
+    background: none;
+    border: none;
+
+    padding: 0;
+
+    cursor: pointer;
+  }
+
+  .burgerimg img {
+    width: 40px;
+    height: auto;
+  }
+
+  /*
+    Side-menu der glider ind fra højre.
+  */
   .site-nav .menu {
     position: fixed;
+
     top: 0;
     right: -100%;
 
@@ -251,24 +373,55 @@ main > * {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
 
-    padding-top: 5rem;
     gap: 2rem;
 
+    padding-top: 5rem;
+    padding-left: 3rem;
+
     background: rgba(52, 52, 52, 0.98);
+
     backdrop-filter: blur(10px);
 
     transition: right 0.4s ease;
+
     z-index: 1000;
   }
 
+  /*
+    JavaScript tilføjer nav-active.
+  */
   .menu.nav-active {
     right: 0;
   }
 
+  /*
+    Større links på mobil.
+  */
   .menu a {
-    font-size: 1.6rem;
+    font-size: 1.7rem;
+  }
+
+  /*
+    Luk-knap i øverste højre hjørne.
+  */
+  .close-menu {
+    position: absolute;
+
+    top: 1.5rem;
+    right: 1.5rem;
+  }
+
+  .close-btn {
+    background: none;
+    border: none;
+
+    color: var(--color-border);
+
+    font-size: 2.5rem;
+
+    cursor: pointer;
   }
 }
 
@@ -277,6 +430,14 @@ main > * {
 ======================================== */
 
 @media (min-width: 801px) {
+  /*
+    Desktop bruger logo i menuen
+    og ikke burger-navigation.
+  */
+  .nav-bar {
+    justify-content: center;
+  }
+
   .burger,
   .close-menu {
     display: none;
@@ -285,68 +446,129 @@ main > * {
 /* ========================================
    INTRO / HERO
 ======================================== */
-
-.intro {
-  display: grid;
-  gap: var(--space-2);
-  grid-template-columns: 1fr;
-  color: var(--color-surface-text);
-}
-.intro div {
-  max-width: 60ch;
-}
-
-@media (min-width: 768px) {
-  .intro {
-    grid-template-columns: 1fr 1fr;
-  }
-  .form-page {
-    grid-template-columns: min(40%, 50ch) 1fr;
-  }
-}
-.intro img {
-  width: 100%;
-  max-width: 500px;
-  justify-self: center;
-  border-radius: 10px;
-}
-
-@media (min-width: 768px) {
-  .intro {
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-  }
-
-  .intro img {
-    max-width: 100%;
-    justify-self: end;
-  }
-}
-
-.grid_hero1 {
+.hero {
   display: flex;
   justify-content: center;
+
+  text-align: center;
+
+  margin-bottom: 8rem;
+
+  color: var(--color-surface-text);
+}
+
+.hero div {
+  max-width: 60ch;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*clamp() er en CSS-funktion, som laver en størrelse, som automatisk tilpasser sig skærmstørrelsen, men inden for nogle grænser. syntaksen er: clamp(minimum, foretrukken, maksimum)*/
+.hero h2 {
+  font-size: clamp(3rem, 5vw, 4rem);
+
+  line-height: 1.1;
+
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  max-width: 38ch;
+
+  font-size: 1.2rem;
+
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    grid-template-columns: 1fr 1fr;
+
+    gap: 4rem;
+
+    align-items: center;
+  }
+}
+
+.hero-button {
+  display: inline-block;
+
+  margin-top: 1.5rem;
+
+  padding: 1rem 2rem;
+
+  background: #4b3a57;
+
+  color: #f1ead3;
+
+  text-decoration: none;
+
+  border-radius: 12px;
+
+  font-weight: 600;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.hero-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 1rem;
+
+  margin-top: 2rem;
+}
+
+.hero-button:hover {
+  background: #5d496e;
+
+  box-shadow: 0 0 15px rgba(178, 138, 223, 0.35);
+
+  transform: translateY(-2px);
+}
+/* ========================================
+   EVENTS Scroll button
+======================================== */
+.scroll-button {
+  display: flex;
+  flex-direction: column;
+
   align-items: center;
 
-  height: 80px; /* mindre banner */
-  margin-top: 2rem;
+  color: var(--color-border);
 
-  background-color: #f4e2ab47;
-  overflow: visible;
+  text-decoration: none;
+
+  gap: 0.25rem;
+  margin-top: -0.5rem;
+}
+.scroll-divider {
+  opacity: 0.5;
 }
 
-.grid_hero1 img {
-  width: 180px; /* mindre logo */
-  height: auto;
+.scroll-text {
+  font-size: 0.95rem;
+
+  letter-spacing: 0.05em;
+}
+/*ANIMATION for arrow in hero section*/
+.scroll-arrow {
+  animation: floatArrow 2s ease-in-out infinite;
 }
 
-@media (max-width: 767px) {
-  .grid_hero1 {
-    height: 70px;
+@keyframes floatArrow {
+  0%,
+  100% {
+    transform: translateY(0);
   }
 
-  .grid_hero1 img {
-    width: 160px;
+  50% {
+    transform: translateY(6px);
   }
 }
 /* ========================================
@@ -359,56 +581,177 @@ main > * {
   gap: var(--space-2);
 }
 
-@media (min-width: 768px) {
-  .flex {
-    flex-direction: row;
-  }
-}
 .events {
   display: flex;
   flex-direction: column;
-  gap: var(--space-1);
+  flex: 1;
+  min-width: 0;
+  gap: 12px;
 
+  padding: 24px;
   background-color: var(--color-surface);
   color: var(--color-text);
-
-  padding: var(--space-1);
-  border-radius: 5%;
+  border-radius: 30px;
 }
 
 .events img {
-  height: 40vh;
+  width: 100%;
+  height: 250px;
   object-fit: cover;
-  border-radius: 5%;
 }
 
-.events h2,
+.events h2 {
+  font-size: 1.5rem;
+  line-height: 1.2;
+  font-weight: 200;
+  margin: 0;
+  padding-bottom: 0.5rem;
+  text-align: center;
+}
+
 .events p {
-  color: var(--color-text);
+  font-size: 1rem;
+  min-height: 8rem;
+  line-height: 1.65;
+  letter-spacing: 0.2px;
+  margin: 0;
+  color: rgb(75, 75, 75);
+  text-align: center;
 }
 
-.events button {
+.events .button {
   margin-top: auto;
-  border-radius: var(--space-05);
+
+  background: #776882;
+  color: #f1ead3;
+
+  border: 1px solid #6f5a83;
+
+  border-radius: 10px;
+
+  padding: 0.2rem 1.2rem;
+
+  font-weight: 600;
+}
+
+.events .button:hover {
+  background: #5d496e;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 0 12px rgba(178, 138, 223, 0.3);
+}
+
+/* DESKTOP */
+
+@media (min-width: 768px) {
+  .flex {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .events {
+    flex: 1;
+  }
 }
 
 /* ========================================
-   KNAPPER
+   POPOVER
 ======================================== */
 
-.button {
-  display: inline-block;
-  justify-self: start;
+[popover] {
+  text-align: center;
+  width: min(700px, 90vw);
 
-  padding: 0.5rem 0.8rem;
-  border: 1px solid var(--color-border);
+  padding: 2rem;
+
+  border: 2px solid var(--color-border);
+  border-radius: 20px;
+
+  background: #f1ead3;
+
+  color: var(--color-text);
+
+  box-sizing: border-box;
+
+  opacity: 0;
+  transform: scale(0.95);
+
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+
+  transition-behavior: allow-discrete;
+}
+
+[popover] p {
+  max-width: 55ch;
+  margin-inline: auto;
+}
+
+[popover]::backdrop {
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+}
+
+[popover] img {
+  width: 100%;
+  height: 240px;
+
+  object-fit: cover;
+
+  border-radius: 12px;
+}
+
+[popover]:popover-open {
+  display: flex;
+  flex-direction: column;
+
+  gap: 1.5rem;
+
+  opacity: 1;
+  transform: scale(1);
+}
+
+[popover] .button {
+  align-self: center;
+
+  padding: 0.8rem 10rem;
+
+  font-size: 1.1rem;
+  font-weight: 600;
 
   background: var(--color-border);
+
+  border: none;
+  border-radius: 12px;
+
   color: var(--color-text);
 
   text-decoration: none;
+
+  transition: all 0.3s ease;
 }
 
+[popover] .button:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.close-popover {
+  margin-top: 1rem;
+
+  width: 100%;
+
+  background: transparent;
+
+  border: 1px solid rgba(155, 121, 80, 0.35);
+
+  color: var(--color-text);
+
+  padding: 0.75rem;
+}
 /* ========================================
    INDHOLDSSEKTIONER
 ======================================== */
@@ -576,58 +919,6 @@ main > * {
   color: var(--color-muted);
 }
 
-/* ========================================
-   POPOVER
-======================================== */
-
-[popover] {
-  grid-column: 2;
-
-  width: 50ch;
-  max-width: 90vw;
-  max-height: 90vh;
-
-  overflow: auto;
-  box-sizing: border-box;
-
-  padding: var(--space-1);
-
-  border: 1px solid #aaa;
-  border-radius: 10px;
-
-  background: white;
-  color: #222;
-
-  opacity: 0;
-  transition: 0.5s;
-  transition-behavior: allow-discrete;
-}
-
-[popover] img {
-  max-height: 30vh;
-  object-fit: cover;
-}
-
-[popover] button {
-  margin-top: auto;
-  border-radius: var(--space-05);
-}
-
-[popover]:popover-open {
-  display: grid;
-  gap: var(--space-1);
-  opacity: 1;
-}
-
-[popover]::backdrop {
-  background: rgb(0 0 0 / 15%);
-}
-
-@starting-style {
-  :popover-open {
-    opacity: 0;
-  }
-}
 /* ========================================
    FORM OG OPSAMLING SIDE
 ======================================== */

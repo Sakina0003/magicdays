@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Redaction+10:ital,wght@0,400;0,700;1,400&family=Redaction:ital,wght@0,400;0,700;1,400&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Baskervville+SC:wght@400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Redaction+10:ital,wght@0,400;0,700;1,400&family=Redaction:ital,wght@0,400;0,700;1,400&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap"
     rel="stylesheet">
   <title>Opsamling</title>
   <link rel="stylesheet" href="./starter.css">
@@ -16,28 +16,49 @@
 
 <body>
   <header class="site-header">
-    <div class="header-content">
 
-    <a href="./"><img class="site-logo" src="./imgs/logoheader.svg" alt="Logo"></a>
-        <button id="theme-toggle" type="button">
-          Light Mode
-        </button>
+    <div class="nav-bar">
+      <div class="mobile-logo">
+        <a href="./">
+          <img src="./imgs/MagicDaysMobileversionNew copy.svg" alt="Magic Days">
+        </a>
+      </div>
       <nav class="site-nav">
+
         <ul class="menu">
+
           <li class="close-menu">
             <button class="close-btn">&times;</button>
           </li>
+
           <li><a href="./">Forside</a></li>
           <li><a href="./svg.html">Interaktiv SVG</a></li>
-          <li><a href="./form.html" aria-current="page">Formular</a></li>
-          <li><a href="./koeb.html">Billetter</a></li>
+
+          <li class="menu-logo">
+            <a href="./" class="logo-link">
+              <img class="site-logo" src="./imgs/LogoMagicDaysfinalwithbg copy.svg" alt="Magic Days">
+            </a>
+          </li>
+
+          <li><a href="./form.html">Formular</a></li>
+          <li>
+            <a href="./koeb.html" class="ticket-link">Billetter</a>
+          </li>
+
         </ul>
+
       </nav>
+
+      <button id="theme-toggle" type="button">
+        Lys
+      </button>
+
       <div class="burger">
         <button class="burgerimg">
-          <img src="./imgs/Burger.svg" alt="burger">
+          <img src="./imgs/Burger.svg" alt="Menu">
         </button>
       </div>
+
     </div>
 
   </header>
