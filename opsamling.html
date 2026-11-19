@@ -18,10 +18,10 @@
   <header class="site-header">
     <div class="header-content">
 
-    <a href="./"><img class="site-logo" src="./imgs/logoheader.svg" alt="Logo"></a>
-        <button id="theme-toggle" type="button">
-          Light Mode
-        </button>
+      <a href="./"><img class="site-logo" src="./imgs/logoheader.svg" alt="Logo"></a>
+      <button id="theme-toggle" type="button">
+        Light Mode
+      </button>
       <nav class="site-nav">
         <ul class="menu">
           <li class="close-menu">
@@ -44,40 +44,46 @@
 
   <main>
     <section class="opsamling-page">
-      <div class="opsamling-intro">
-        <p class="result-subtitle">MAGIC DAYS · DIN PERSONLIGE LÆSNING</p>
-        <h1>Din magiske følgesvend er...</h1>
-        <h2 id="result-title"></h2>
 
+      <div class="opsamling-intro fade-in">
+        <h1>
+          <span id="visitor-name"></span>, din magiske følgesvend er
+          <span id="result-title"></span>
+        </h1>
         <p id="result-intro"></p>
       </div>
 
       <article class="opsamling-placeholder">
 
+        <div class="companion-content fade-in">
+
+          <div class="companion-description">
+            <h3>Om din følgesvend</h3>
+            <p id="result-description"></p>
+
+            <h3>Dette kendetegner dig</h3>
+            <ul id="result-traits"></ul>
+          </div>
+
+          <p class="result-ending">
+            Må din magiske rejse begynde...
+          </p>
+
+          <div class="actions">
+            <a class="button fade-in" href="./form.html">Tag quizzen igen</a>
+          </div>
+
+        </div>
+
         <div class="companion-image" id="companion-image">
-          <img src="./imgs/kanin.svg" id="kanin-image" alt="kanin foran månen">
-          <img src="./imgs/Kat.svg" id="kat-image" alt="kat foran månen ">
-          <img src="./imgs/ravn.svg" id="krage-image" alt="ravn foran månen">
-        </div>
-
-        <div class="companion-description">
-          <h3>Om din følgesvend</h3>
-          <p id="result-description"></p>
-
-          <h3>Dette kendetegner dig</h3>
-          <ul id="result-traits"></ul>
-        </div>
-
-        <p class="result-ending">
-          Må din magiske rejse begynde...
-        </p>
-
-        <div class="actions">
-          <a class="button" href="./form.html">Tag quizzen igen</a>
+          <img src="./imgs/kanin.svg" id="kanin-image" alt="Kanin foran månen">
+          <img src="./imgs/Kat.svg" id="kat-image" alt="Kat foran månen">
+          <img src="./imgs/ravn.svg" id="krage-image" alt="Ravn foran månen">
         </div>
 
       </article>
     </section>
+
   </main>
 
   <footer class="site-footer">

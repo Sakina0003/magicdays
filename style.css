@@ -639,8 +639,53 @@ main > * {
   margin-top: 0.5rem;
 }
 /*form styling*/
+.form-page img{
+  margin-top: var(--space-2);
+}
+form {
+  padding: var(--space-1);
+}
+.form-companion {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-family: "Tinos", serif;
+}
+legend {
+  margin-bottom: var(--space-1);
+}
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 label {
   display: block;
+}
+input,
+select,
+textarea {
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+
+  background-color: var(--color-surface);
+  color: var(--color-text);
+
+  padding: 0.7rem;
+  font-family: inherit;
+}
+
+fieldset {
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 1rem;
+}
+/*On Focus*/
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid var(--color-border);
+  outline-offset: 3px;
 }
 
 button,
@@ -653,6 +698,37 @@ textarea {
 button {
   display: block;
 }
+button[type="submit"] {
+  background-color: var(--color-header);
+  color: var(--color-surface-text);
+
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+
+  padding: 0.85rem 2rem;
+
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.3s,
+    transform 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  transform: translateY(-2px);
+}
+
+button[type="submit"]:focus-visible {
+  outline: 2px solid var(--color-border);
+  outline-offset: 4px;
+}
 /*hide images*/
 .companion-image img {
   display: none;
@@ -660,6 +736,156 @@ button {
   width: 100%;
   height: auto;
 }
+
+.form-intro picture {
+  display: block;
+  width: 100%;
+}
+
+/* Scroll fade-in */
+.fade-in {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========================================
+   RESULTS PAGE
+======================================== */
+
+/* Main result page: override previous grid layouts */
+.opsamling-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: var(--space-3);
+}
+
+/* Heading and intro */
+.opsamling-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  max-width: 70ch;
+  margin: 0 auto;
+}
+
+.opsamling-intro h1 {
+  margin-top: var(--space-1);
+}
+
+/* Main result area */
+.opsamling-placeholder {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 65ch;
+  margin: 0 auto;
+  isolation: isolate;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+/* Animal image behind all content */
+.companion-image {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: -1;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.companion-image img {
+  display: none;
+  width: 100vw;
+  height: auto;
+  max-width: none;
+  object-fit: contain;
+  opacity: 0.07;
+  transform: scale(1.5);
+}
+
+/* Description and text */
+.companion-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.companion-description {
+  width: 100%;
+}
+
+.companion-description h3 {
+  margin-bottom: var(--space-1);
+  font-size: 1.5rem;
+}
+
+.companion-description ul {
+  padding-left: 0;
+  list-style-position: inside;
+}
+
+/* Ending */
+.result-ending {
+  color: var(--color-muted);
+  font-style: italic;
+}
+
+/* Button */
+.opsamling-placeholder .actions {
+  margin-top: var(--space-1);
+}
+
+.opsamling-placeholder .button {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: var(--color-header);
+  color: var(--color-surface-text);
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  font-family: inherit;
+  font-size: 1rem;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.opsamling-placeholder .button:hover {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .opsamling-placeholder {
+    padding: 2rem 1rem;
+  }
+
+  .companion-image img {
+    max-width: 350px;
+  }
+}
+
 /* ========================================
    RESPONSIVE
 ======================================== */
@@ -673,6 +899,6 @@ button {
   }
 
   .opsamling-page {
-    grid-template-columns: minmax(0, 44ch) minmax(20rem, 1fr);
+    grid-template-columns: 1fr;
   }
 }

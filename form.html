@@ -19,9 +19,9 @@
     <div class="header-content">
 
       <a href="./"><img class="site-logo" src="./imgs/logoheader.svg" alt="Logo"></a>
-        <button id="theme-toggle" type="button">
-          Light Mode
-        </button>
+      <button id="theme-toggle" type="button">
+        Light Mode
+      </button>
       <nav class="site-nav">
         <ul class="menu">
           <li class="close-menu">
@@ -45,17 +45,23 @@
   <main>
     <section class="form-page">
       <header class="form-intro">
-        <h1>Formular</h1>
-        <p>Lav en formular, der sender brugeren videre til opsamlingssiden.</p>
+        <picture class="fade-in">
+          <source media="(max-width: 799px)" srcset="./imgs/magicanimals_mobile.webp">
+          <img src="./imgs/magicanimals.webp" alt="Magiske dyr">
+        </picture>
       </header>
 
-      <form class="form-companion" id="quiz-form" action="./opsamling.html">
-        <h2>Find din Kompanjion</h2>
+      <form class="form-companion fade-in" id="quiz-form" action="./opsamling.html" novalidate>
+        <h2>Mød din nye følgesvend</h2>
+        <p>Svar på spørgsmålene, og lad intuitionen guide dig. Dine valg afslører, hvilken magisk følgesvend der passer
+          bedst til
+          dig. Måske venter der en ravn, en kat eller en kanin på at møde dig.</p>
 
         <label for="name">Hvad hedder du?</label>
         <input type="text" id="name" name="name" placeholder="Skriv dit navn..." required>
+        <p id="name-error" class="error-message" aria-live="polite"></p>
 
-        <fieldset class="group">
+        <fieldset class="group fade-in">
           <legend>1. Du træder ind i en gammel heksehytte. Hvad fanger din opmærksomhed først?</legend>
 
           <label for="books">
@@ -78,8 +84,9 @@
             En hyggelig pejs og en behagelig lænestol.
           </label>
         </fieldset>
+        <p id="question1-error" class="error-message" aria-live="polite"></p>
 
-        <label for="question2">2. En mystisk trylledrik er ved at blive brygget. Hvilken ingrediens ville du
+        <label for="question2" class="fade-in">2. En mystisk trylledrik er ved at blive brygget. Hvilken ingrediens ville du
           tilføje?</label>
         <select id="question2" name="question2" required>
           <option value="" disabled selected>Vælg en ingrediens...</option>
@@ -88,8 +95,8 @@
           <option value="20">Ravnefjer</option>
           <option value="10">Kanel og urter</option>
         </select>
-
-        <fieldset class="group">
+        <p id="question2-error" class="error-message" aria-live="polite"></p>
+        <fieldset class="group fade-in">
           <legend>3. Du har én aften til at forberede en magisk sammenkomst. Hvad ville du gøre? - vælg op til to svar
           </legend>
 
@@ -120,8 +127,8 @@
 
           <p id="question3-error" class="error-message" aria-live="polite"></p>
         </fieldset>
-
-        <fieldset class="group">
+<p id="question3-error" class="error-message" aria-live="polite"></p>
+        <fieldset class="group fade-in">
           <legend>4. Du finder en mystisk besked uden for dit vindue. Hvad gør du?</legend>
 
           <label for="inspect">
@@ -144,8 +151,8 @@
             Venter og ser, om der sker noget mere.
           </label>
         </fieldset>
-
-        <label for="question5">5. Vælg den magiske genstand, du helst ville eje.</label>
+<p id="question4-error" class="error-message" aria-live="polite"></p>
+        <label for="question5" class="fade-in">5. Vælg den magiske genstand, du helst ville eje.</label>
         <select id="question5" name="question5" required>
           <option value="" disabled selected>Vælg en genstand...</option>
           <option value="25">Et antikt sølvspejl.</option>
@@ -153,8 +160,8 @@
           <option value="20">En bog med glemte hemmeligheder.</option>
           <option value="15">Et mystisk krystalvedhæng.</option>
         </select>
-
-        <button type="submit">Find min følgesvend</button>
+<p id="question5-error" class="error-message" aria-live="polite"></p>
+        <button type="submit" class="fade-in">Find min følgesvend</button>
       </form>
 
     </section>

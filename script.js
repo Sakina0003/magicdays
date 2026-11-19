@@ -33,16 +33,17 @@ if (closeBtn && menu) {
 
 const themeToggle = document.querySelector("#theme-toggle");
 
-themeToggle.addEventListener("click", function () {
-  document.documentElement.classList.toggle("light-mode");
+if (themeToggle) {
+  themeToggle.addEventListener("click", function () {
+    document.documentElement.classList.toggle("light-mode");
 
-  if (document.documentElement.classList.contains("light-mode")) {
-    themeToggle.textContent = "Dark Mode";
-  } else {
-    themeToggle.textContent = "Light Mode";
-  }
-});
-
+    if (document.documentElement.classList.contains("light-mode")) {
+      themeToggle.textContent = "Dark Mode";
+    } else {
+      themeToggle.textContent = "Light Mode";
+    }
+  });
+}
 // ========================================
 // SKRIFTRULLE
 // ========================================
@@ -241,54 +242,87 @@ if (form) {
 
   // FORM SUBMISSION
 
+  // FORM SUBMISSION AND VALIDATION
+
   form.addEventListener("submit", (event) => {
-    // Check that at least one checkbox is selected
+    event.preventDefault();
 
-    const selectedCheckboxes = document.querySelectorAll('input[name="question3"]:checked');
+    // Get the values from the form
+    const name = document.querySelector("#name").value.trim();
+    const question1 = document.querySelector('input[name="question1"]:checked');
+    const question2 = document.querySelector("#question2").value;
+    const question3 = document.querySelectorAll('input[name="question3"]:checked');
+    const question4 = document.querySelector('input[name="question4"]:checked');
+    const question5 = document.querySelector("#question5").value;
 
-    if (selectedCheckboxes.length === 0) {
-      event.preventDefault();
-      errorMessage.textContent = "Vælg mindst ét svar.";
+    // Clear previous error messages
+    document.querySelectorAll(".error-message").forEach((error) => {
+      error.textContent = "";
+    });
+
+    let isValid = true;
+
+    // Check the name
+    if (name === "") {
+      document.querySelector("#name-error").textContent = "Skriv dit navn.";
+      isValid = false;
+    }
+
+    // Check question 1
+    if (!question1) {
+      document.querySelector("#question1-error").textContent = "Vælg én mulighed.";
+      isValid = false;
+    }
+
+    // Check question 2
+    if (question2 === "") {
+      document.querySelector("#question2-error").textContent = "Vælg én ingrediens.";
+      isValid = false;
+    }
+
+    // Check question 3
+    if (question3.length === 0) {
+      document.querySelector("#question3-error").textContent = "Vælg mindst ét svar.";
+      isValid = false;
+    } else if (question3.length > 2) {
+      document.querySelector("#question3-error").textContent = "Du kan højst vælge to svar.";
+      isValid = false;
+    }
+
+    // Check question 4
+    if (!question4) {
+      document.querySelector("#question4-error").textContent = "Vælg én mulighed.";
+      isValid = false;
+    }
+
+    // Check question 5
+    if (question5 === "") {
+      document.querySelector("#question5-error").textContent = "Vælg én genstand.";
+      isValid = false;
+    }
+
+    // Stop if the form is not valid
+    if (!isValid) {
       return;
     }
 
-    // Get the visitor's name
-
-    const name = document.querySelector("#name").value;
-
-    // Get the selected answers
-
-    const question1 = document.querySelector('input[name="question1"]:checked');
-
-    const question2 = document.querySelector("#question2");
-
-    const question4 = document.querySelector('input[name="question4"]:checked');
-
-    const question5 = document.querySelector("#question5");
-
     // Calculate the total score
-
     let totalScore = 0;
 
     totalScore += Number(question1.value);
-    totalScore += Number(question2.value);
+    totalScore += Number(question2);
     totalScore += Number(question4.value);
-    totalScore += Number(question5.value);
+    totalScore += Number(question5);
 
-    // Add the selected checkbox scores
-
-    selectedCheckboxes.forEach((checkbox) => {
+    question3.forEach((checkbox) => {
       totalScore += Number(checkbox.value);
     });
 
     // Save name and score
-
     sessionStorage.setItem("visitorName", name);
     sessionStorage.setItem("totalScore", totalScore);
 
     // Go to the results page
-
-    event.preventDefault();
     window.location.href = "./opsamling.html";
   });
 }
@@ -296,7 +330,7 @@ if (form) {
 // ==========================================
 // RESULTS PAGE
 // ==========================================
-
+const visitorName = document.querySelector("#visitor-name");
 const resultTitle = document.querySelector("#result-title");
 const resultIntro = document.querySelector("#result-intro");
 const resultDescription = document.querySelector("#result-description");
@@ -322,21 +356,18 @@ if (resultTitle) {
     if (score >= 101) {
       companion = {
         name: "Katten",
-        intro: "Din magiske følgesvend er katten!",
         description: "Du er en selvstændig sjæl med en stærk intuition og en naturlig tiltrækning til det mystiske. Du lægger mærke til detaljer, som andre ofte overser, og du foretrækker at følge din egen vej frem for at gøre, hvad alle andre gør. Ligesom katten rummer du både nysgerrighed og mystik. Du ved, hvornår du skal udforske verden, og hvornår du skal trække dig tilbage og lytte til din egen indre stemme.",
         traits: ["Selvstændig og fri", "Intuitiv og opmærksom", "Mystisk og nysgerrig"],
       };
     } else if (score >= 51) {
       companion = {
         name: "Kragen",
-        intro: "Din magiske følgesvend er kragen!",
         description: "Du har et skarpt sind og en naturlig evne til at se sammenhænge, som andre måske overser. Du er opfindsom, videbegærlig og elsker at opdage nye ting. Ligesom kragen samler du på oplevelser, viden og små hemmeligheder fra verden omkring dig. Du tænker gerne ud af boksen og finder ofte kreative løsninger, når andre har givet op.",
         traits: ["Vis og opfindsom", "Observant og nysgerrig", "Kreativ og eventyrlysten"],
       };
     } else {
       companion = {
         name: "Kaninen",
-        intro: "Din magiske følgesvend er kaninen!",
         description: "Du har et varmt hjerte og en nysgerrighed, der får dig til at opdage skønheden i selv de mindste ting. Du er opmærksom på dine omgivelser og har en særlig evne til at mærke stemninger omkring dig. Ligesom kaninen møder du verden med forsigtighed, men også med en stor lyst til at udforske. Din rolige og venlige natur gør dig til en værdsat følgesvend.",
         traits: ["Blid og omsorgsfuld", "Nysgerrig og opmærksom", "Rolig og betænksom"],
       };
@@ -344,9 +375,12 @@ if (resultTitle) {
 
     // Display the result
 
+    // Display the result
+    visitorName.textContent = name;
     resultTitle.textContent = companion.name;
-    resultIntro.textContent = `${name}, ${companion.intro.toLowerCase()}`;
+    resultIntro.textContent = companion.intro;
     resultDescription.textContent = companion.description;
+
     // Display companion image
     const companionImages = {
       Katten: "#kat-image",
@@ -356,16 +390,39 @@ if (resultTitle) {
 
     const selectedImage = document.querySelector(companionImages[companion.name]);
 
-    selectedImage.style.display = "block";
+    console.log("Description:", companion.description);
+    console.log("Selected image:", selectedImage);
+
+    if (selectedImage) {
+      selectedImage.style.display = "block";
+    }
 
     // Display personality traits
+    resultTraits.innerHTML = "";
 
     companion.traits.forEach((trait) => {
       const listItem = document.createElement("li");
-
       listItem.textContent = trait;
-
       resultTraits.appendChild(listItem);
     });
   }
 }
+const fadeElements = document.querySelectorAll(".fade-in");
+
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  },
+  {
+    threshold: 0.15,
+  },
+);
+
+fadeElements.forEach((element) => {
+  observer.observe(element);
+});
